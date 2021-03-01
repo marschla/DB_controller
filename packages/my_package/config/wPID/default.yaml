@@ -1,0 +1,19 @@
+#structural parameter
+baseline: 0.1
+
+#weighting params for error calculation
+weight_d: 0.8
+weight_phi: 0.2
+
+#PID controller params
+k_p: 20.0
+k_i: 1.0
+k_d: 0.0
+sati: 0.5
+satd: 1.0
+omegasat: 4.0
+
+#base speed
+vref: 0.2
+
+

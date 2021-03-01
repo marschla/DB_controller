@@ -2,8 +2,7 @@
 
 	<arg name="veh" default="$(env VEHICLE_NAME)"/>
 	<arg name="demo_name" value="Lane_Following_Marco"/>
-	<arg name="node_name" default="realPID"/>
-
+	<arg name="node_name" default="wPID"/>
 
 
 	<group ns="$(arg veh)">
@@ -15,8 +14,7 @@
   		<node pkg="my_package" type="$(arg node_name).py" name="$(arg node_name)" output="screen">
 			<rosparam command="load" file="$(find my_package)/config/$(arg node_name)/default.yaml"/>
 		</node>
-
-
+		
 	</group>
   
 </launch>
