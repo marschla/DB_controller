@@ -127,8 +127,12 @@ class MyNode(DTROS):
     #function updates pose variables, that camera gives us data at higher rate then this code operates at,
     #thus we do not use all incoming data
     def control(self,pose,source):
-        self.dist = -pose.d
+        self.dist = pose.d
         self.phi = pose.phi
+
+        delay = rospy.Time.now() - pose.header.stamp
+        delay_float = delay.secs + float(delay.nsecs)/1e9    
+        rospy.loginfo('delay [s] =  %s' % delay_float)     
 
 
     
