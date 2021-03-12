@@ -58,7 +58,6 @@ class ControllerNode(DTROS):
         #self.vref = rospy.get_param("~vref",None)   #v_ref defines speed at which the robot moves 
         self.vref = rospy.get_param("~vref",None)
 
-
     #function to reset Integralstate, if robot is thought to be perfectly in Lane (d=phi=0)
     def resetintegral(self,d,phi):
         tol_d = 0.05
@@ -151,26 +150,17 @@ class ControllerNode(DTROS):
         car_cmd_msg = WheelsCmdStamped()
         #car_cmd_msg = Twist2DStamped()
         tnew = time.time()
-        stoptime = 28.0
         t0 = time.time()
         i=0
 
         parammsg1 = [self.k_p,self.k_i,self.k_d]
-        rospy.loginfo("[kp,ki,kd] = %s" % parammsg1)
+        #rospy.loginfo("[kp,ki,kd] = %s" % parammsg1)
         
         while  not rospy.is_shutdown():
             #computing dt for I-part of controller
             told = tnew
             tnew = time.time()
             dt = tnew-told
-            
-            '''
-            #stop programm once a certain time has passed (for experiments, not meant for normal usage)
-            if tnew-t0>stoptime:
-                rospy.logwarn("Time's up!!!")
-                rospy.signal_shutdown("Ende gut, alles gut")
-                self.custom_shutdown()
-            '''
             
             v,omega = self.getcontrolaction(self.dist,self.phi,dt)
 
@@ -182,7 +172,7 @@ class ControllerNode(DTROS):
                 rospy.logwarn("Max Omega reached")
 
             #def. motor commands that will be published
-            car_cmd_msg.header.stamp = rospy.get_rostime()
+            car_cmd_msg.header.stamp = rospy.Time.now()
             car_cmd_msg.vel_left = v + 0.5*self.baseline * omega
             car_cmd_msg.vel_right = v - 0.5*self.baseline * omega
             #publish actuator output to wheels_driver_node
@@ -196,9 +186,9 @@ class ControllerNode(DTROS):
             message4 = v
 
             #rospy.loginfo('d: %s' % message1)
-            #rospy.loginfo('omega: %s' % message2)
+            rospy.loginfo('omega: %s' % message2)
             #rospy.loginfo('phi: %s' % message3)
-            #rospy.loginfo('v: %s' % message4)
+            rospy.loginfo('v: %s' % message4)
             #rospy.loginfo("time: %s" % message5)
             
             rate.sleep()

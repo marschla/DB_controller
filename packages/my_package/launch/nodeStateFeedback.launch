@@ -2,7 +2,7 @@
 
 	<arg name="veh" default="$(env VEHICLE_NAME)"/>
 	<arg name="demo_name" value="Lane_Following_Marco"/>
-	<arg name="node_name" default="PolePlacement"/>
+	<arg name="node_name" default="StateFeedback"/>
 
 
 	<group ns="$(arg veh)">

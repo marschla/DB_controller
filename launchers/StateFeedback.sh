@@ -15,7 +15,7 @@ dt-launchfile-init
 # launching app
 
 echo "Launched StateFeedback controller"
-dt-exec roslaunch my_package nodePolePlacement.launch
+dt-exec roslaunch my_package nodeStateFeedback.launch
 
 # ----------------------------------------------------------------------------
 # YOUR CODE ABOVE THIS LINE

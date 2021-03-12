@@ -15,7 +15,7 @@ dt-launchfile-init
 # launching app
 
 echo "Launched weighted PID controller"
-dt-exec roslaunch my_package nodewPID.launch
+dt-exec roslaunch my_package nodewPID.launch 
 
 # ----------------------------------------------------------------------------
 # YOUR CODE ABOVE THIS LINE
